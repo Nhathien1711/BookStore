@@ -1,0 +1,76 @@
+﻿@model BookStore.Models.SACH
+
+@{
+    ViewBag.Title = "SuaSach";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2 class="text-center">SỬA THÔNG TIN SÁCH</h2>
+
+<div class="container mt-4">
+    @using (Html.BeginForm("SuaSach", "Sach", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Masach, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Masach, new { @class = "form-control", @readonly = "readonly" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tensach, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Tensach, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Donvitinh, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Donvitinh, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Dongia, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Dongia, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Mota, new { @class = "control-label" })
+            @Html.TextAreaFor(model => model.Mota, new { @class = "form-control", rows = 4 })
+        </div>
+
+        <div class="form-group">
+            <label class="control-label">Ảnh Bìa:</label>
+            <div>
+                <img src="~/Images/@Model.Hinhminhhoa" class="img-thumbnail" style="width: 120px;" alt="Book Image" />
+            </div>
+            @Html.TextBoxFor(model => model.Hinhminhhoa, new { @class = "form-control mt-2" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaCD, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.MaCD, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MaNXB, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.MaNXB, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Ngaycapnhat, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Ngaycapnhat, "{0:yyyy-MM-dd}", new { @class = "form-control", @type = "date" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Soluongban, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.Soluongban, new { @class = "form-control" })
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.solanxem, new { @class = "control-label" })
+            @Html.TextBoxFor(model => model.solanxem, new { @class = "form-control" })
+        </div>
+
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+        <a href="@Url.Action("Admin","SACH")" class="btn btn-secondary ml-2">Cancel</a>
+    }
+</div>

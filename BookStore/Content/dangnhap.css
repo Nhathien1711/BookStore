@@ -1,0 +1,90 @@
+﻿/* Đặt nền toàn trang và căn giữa form */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f2f5;
+    font-family: Arial, sans-serif;
+}
+
+h2 {
+    color: #ff4d4d;
+    text-align: center;
+    font-weight: 400;
+}
+
+.box.login {
+    width: 100%;
+    max-width: 400px;
+    background-color: #ffffff;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Style tiêu đề của form và các label */
+.boxBody label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    color: #333333;
+}
+
+/* Style cho các input */
+.boxBody input[type="text"],
+.boxBody input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Style cho link quên mật khẩu */
+.rLink {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+    .rLink:hover {
+        text-decoration: underline;
+    }
+
+/* Style cho checkbox và nhãn */
+footer label {
+    font-size: 0.9em;
+    color: #333333;
+}
+
+footer input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+/* Style cho nút đăng nhập */
+.btnLogin {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+    .btnLogin:hover {
+        background-color: #0056b3;
+    }
+
+/* Style cho thông báo lỗi nếu có */
+.validation-summary-errors {
+    color: #ff4d4d;
+    margin-bottom: 10px;
+}
