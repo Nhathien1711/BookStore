@@ -34,7 +34,7 @@ namespace BookStore.Controllers
                 if (string.IsNullOrEmpty(kh.DienthoaiKH))
                     ModelState.AddModelError(string.Empty, "Điện thoại không được để trống");
 
-                //Kiểm tra xem có người nào đã đăng kí với tên đnăg nhập này hay chưa
+                //Kiểm tra xem có người nào đã đăng kí với tên đăng nhập này hay chưa
                 var khachhang = database.KHACHHANGs.FirstOrDefault(k => k.TenDN == kh.TenDN);
                 if (khachhang != null)
                     ModelState.AddModelError(string.Empty, "Đã có người đăng kí tên này");
@@ -66,7 +66,7 @@ namespace BookStore.Controllers
                     ModelState.AddModelError(string.Empty, "Mật khẩu không được để trống");
                 if (ModelState.IsValid) 
                 {
-                    //Tìm khách hàng có tên đnăg nhập và password hợp lệ trong CSDL
+                    //Tìm khách hàng có tên đăng nhập và password hợp lệ trong CSDL
                     var khach = database.KHACHHANGs.FirstOrDefault(k => k.TenDN == kh.TenDN && k.Matkhau == kh.Matkhau);
                     if (khach != null)
                     {

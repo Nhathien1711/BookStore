@@ -3,8 +3,10 @@ using PagedList;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 namespace MvcBookStore.Controllers
@@ -151,13 +153,14 @@ namespace MvcBookStore.Controllers
                 try
                 {
                     // Đánh dấu đối tượng là đã chỉnh sửa và lưu các thay đổi
+                    database.SACHes.Add(sACH);
                     database.Entry(sACH).State = EntityState.Modified;
                     database.SaveChanges();
 
                     TempData["SuccessMessage"] = "Thông tin sách đã được cập nhật thành công!";
-                    return RedirectToAction("Index"); // Chuyển hướng về trang danh sách sách
+                    return RedirectToAction("Sach"); // Chuyển hướng về trang danh sách
                 }
-                catch (System.Exception ex)
+                catch (System.Exception)
                 {
                     // Log lỗi (có thể sử dụng logging framework)
                     ModelState.AddModelError("", "Đã xảy ra lỗi trong quá trình cập nhật dữ liệu. Vui lòng thử lại.");
@@ -165,6 +168,53 @@ namespace MvcBookStore.Controllers
             }
 
             return View(sACH); // Hiển thị lại form với dữ liệu đã nhập nếu không hợp lệ hoặc gặp lỗi
+        }
+
+        // GET: Admin/XoaSach/5
+        public ActionResult XoaSach(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            // Tìm sách theo ID
+            SACH sach = database.SACHes.Find(id);
+            if (sach == null)
+            {
+                return HttpNotFound();
+            }
+
+            // Trả về View để xác nhận việc xóa
+            return View(sach);
+        }
+
+        // POST: Admin/XoaSach/5
+        [HttpPost, ActionName("XoaSach")]
+        [ValidateAntiForgeryToken]
+        public ActionResult XoaSach(int id)
+        {
+            // Tìm sách theo ID
+            SACH sach = database.SACHes.Find(id);
+            if (sach != null)
+            {
+                // Xóa sách khỏi cơ sở dữ liệu
+                try
+                {
+                    database.SACHes.Remove(sach);
+                    database.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Ghi lại lỗi hoặc thông báo cho người dùng
+                    Console.WriteLine(ex.InnerException?.Message);
+                    // Hoặc xử lý lỗi theo cách bạn muốn
+                }
+
+            }
+
+            // Chuyển hướng về danh sách
+            return RedirectToAction("Sach");
         }
     }
 }

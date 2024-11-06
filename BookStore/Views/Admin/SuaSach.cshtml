@@ -8,7 +8,7 @@
 <h2 class="text-center">SỬA THÔNG TIN SÁCH</h2>
 
 <div class="container mt-4">
-    @using (Html.BeginForm("SuaSach", "Sach", FormMethod.Post))
+    @using (Html.BeginForm("SuaSach", "Admin", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
 
@@ -70,7 +70,10 @@
             @Html.TextBoxFor(model => model.solanxem, new { @class = "form-control" })
         </div>
 
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-        <a href="@Url.Action("Admin","SACH")" class="btn btn-secondary ml-2">Cancel</a>
+        <button type="submit" value="Fix" class="btn btn-primary">Save Changes</button>
+        <a href="@Url.Action("Sach","Admin")" class="btn btn-secondary ml-2">Cancel</a>
     }
+</div>
+<div>
+    @Html.ActionLink("Back to List", "Index")
 </div>
